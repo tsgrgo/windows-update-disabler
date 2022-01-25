@@ -1,5 +1,10 @@
 Windows Update Disabler
 ===================================
+The one-click way to disable auto updates for good, without leftover stuff running in the background.
+
+WARNING
+-------------------
+Before you run this script, you must check if Windows is fully updated and doesn't currently installing or downloading updates!
 
 How to use?
 -------------------
