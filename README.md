@@ -1,6 +1,6 @@
 Windows Update Disabler
 ===================================
-The one-click way to disable auto updates for good, without leftover stuff running in the background.
+The one-click way to disable auto updates for good, without leaving leftover stuff running in the background.
 
 WARNING
 -------------------
@@ -23,7 +23,9 @@ Tested for Windows 10 only:
 
 2. Download Windows Update Assistant https://www.microsoft.com/software-download/windows10
 
-3. After updating with the assistant, rerun the disabler script.
+3. After updating, uninstall the assistant
+
+4. Rerun the disabler script
 
 What it does
 -----------
