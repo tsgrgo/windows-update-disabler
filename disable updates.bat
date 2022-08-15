@@ -6,9 +6,9 @@ if not "%1"=="admin" (powershell start -verb runas '%0' admin & exit /b)
 if not "%2"=="system" (powershell %~dp0\PsExec.exe /accepteula -i -s -d '%0' admin system & exit /b)
 
 rem Disable update related services
-sc stop wuauserv
-sc stop UsoSvc
-sc stop WaaSMedicSvc
+net stop wuauserv
+net stop UsoSvc
+net stop WaaSMedicSvc
 sc config wuauserv start= disabled
 sc failure wuauserv reset= 0 actions= ""
 sc config UsoSvc start= disabled
