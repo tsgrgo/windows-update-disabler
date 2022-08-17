@@ -8,6 +8,7 @@ if not "%2"=="system" (powershell %~dp0\PsExec.exe /accepteula -i -s -d '%0' adm
 rem Enable update related services
 sc config wuauserv start= auto
 sc config UsoSvc start= auto
+sc config uhssvc start= delayed-auto
 
 rem Enable update medic service
 rename C:\Windows\System32\WaaSMedicSvc_BAK.dll WaaSMedicSvc.dll

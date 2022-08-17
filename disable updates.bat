@@ -8,11 +8,14 @@ if not "%2"=="system" (powershell %~dp0\PsExec.exe /accepteula -i -s -d '%0' adm
 rem Disable update related services
 net stop wuauserv
 net stop UsoSvc
+net stop uhssvc
 net stop WaaSMedicSvc
 sc config wuauserv start= disabled
 sc failure wuauserv reset= 0 actions= ""
 sc config UsoSvc start= disabled
 sc failure UsoSvc reset= 0 actions= ""
+sc config uhssvc start= disabled
+sc failure uhssvc reset= 0 actions= ""
 
 rem Forcefully disable update medic service
 takeown /f C:\Windows\System32\WaaSMedicSvc.dll && icacls C:\Windows\System32\WaaSMedicSvc.dll /grant *S-1-1-0:F /t /c /l /q
