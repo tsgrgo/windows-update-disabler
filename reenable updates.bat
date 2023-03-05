@@ -11,7 +11,9 @@ sc config UsoSvc start= auto
 sc config uhssvc start= delayed-auto
 
 rem Enable update medic service
+takeown /f C:\Windows\System32\WaaSMedicSvc_BAK.dll && icacls C:\Windows\System32\WaaSMedicSvc_BAK.dll /grant *S-1-1-0:F
 rename C:\Windows\System32\WaaSMedicSvc_BAK.dll WaaSMedicSvc.dll
+icacls C:\Windows\System32\WaaSMedicSvc.dll /setowner "NT SERVICE\TrustedInstaller" && icacls C:\Windows\System32\WaaSMedicSvc.dll /remove *S-1-1-0
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc" /v Start /t REG_DWORD /d 3 /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc" /v FailureActions /t REG_BINARY /d 840300000000000000000000030000001400000001000000c0d4010001000000e09304000000000000000000 /f
 reg delete "HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "NoAutoUpdate" /f

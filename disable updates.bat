@@ -18,8 +18,9 @@ sc config uhssvc start= disabled
 sc failure uhssvc reset= 0 actions= ""
 
 rem Forcefully disable update medic service
-takeown /f C:\Windows\System32\WaaSMedicSvc.dll && icacls C:\Windows\System32\WaaSMedicSvc.dll /grant *S-1-1-0:F /t /c /l /q
+takeown /f C:\Windows\System32\WaaSMedicSvc.dll && icacls C:\Windows\System32\WaaSMedicSvc.dll /grant *S-1-1-0:F
 rename C:\Windows\System32\WaaSMedicSvc.dll WaaSMedicSvc_BAK.dll
+icacls C:\Windows\System32\WaaSMedicSvc_BAK.dll /setowner "NT SERVICE\TrustedInstaller" && icacls C:\Windows\System32\WaaSMedicSvc_BAK.dll /remove *S-1-1-0
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc" /v Start /t REG_DWORD /d 4 /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc" /v FailureActions /t REG_BINARY /d 000000000000000000000000030000001400000000000000c0d4010000000000e09304000000000000000000 /f
 
