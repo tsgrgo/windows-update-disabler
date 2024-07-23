@@ -5,40 +5,66 @@
 ⚡ The one-click way to disable auto updates for good, without leaving leftover stuff running in the background.
 
 > [!WARNING]  
-> Before you run this script, you must check if Windows is fully updated and isn't currently installing or downloading updates!
+> Before running this script, ensure that Windows is fully updated and not currently installing or downloading updates! Interrupting an update could result in breaking your Windows installation!
 
 ## How to Use
 
-Simple!
+### Simple!
 
-1. Clone this repository or download it as a ZIP file and extract it.
-2. Check if there are no updates currently being installed! (Settings > Update & Security > Windows Update)
-3. Run "disable updates.bat" and Windows will never update automatically again.
+1. **Clone or Download:**
 
-You can run "enable updates.bat" to undo the changes and allow Windows to update automatically again.
+    - Clone this repository using `git clone https://github.com/tsgrgo/windows-update-disabler.git` or download it as a ZIP file and extract it.
 
-## Recommended Way of Updating
+2. **Check for Active Updates:**
 
-1. Run "enable updates.bat" to re-enable Windows Update
-2. Update Windows from settings (Settings > Update & Security > Windows Update)
-3. Run "disable updates.bat"
+    - Ensure there are no updates currently being installed. Navigate to **Settings > Update & Security > Windows Update** and verify.
 
-## Manually Update Windows
+3. **Run the Script:**
 
-Tested for Windows 10 only:
+    - Execute `disable updates.bat`. This will disable automatic Windows updates.
 
-1. Run "manual update.bat" to re-enable Windows Update Service (which is essential for installing updates)
-2. Download the [Windows 10 Update Assistant](https://www.microsoft.com/software-download/windows10) from the official Microsoft website and use it to install updates.
-3. After updating, uninstall the assistant
-4. Rerun the disabler script
+4. **Re-enable Updates (Optional):**
+    - If you need to allow automatic updates again, run `enable updates.bat`. This is a complete inverse function of `disable updates.bat` and will undo all the changes it did.
+
+## How to Update Manually
+
+Regular updates are recommended for security. To update manually:
+
+1. **Enable Updates:**
+
+    - Run `enable updates.bat` to re-enable Windows Update.
+
+2. **Perform Updates:**
+
+    - Navigate to **Settings > Update & Security > Windows Update** and install available updates.
+
+3. **Disable Updates Again:**
+    - After updating, run `disable updates.bat` again to disable automatic updates.
+
+## Using the Update Service Temporarily
+
+Some applications, like Microsoft Store, depend on the Windows Update service. To temporarily enable the service:
+
+1. **Enable Update Service:**
+
+    - Run `use update service.bat` to re-enable the Windows Update Service.
+
+2. **Use Dependent Applications:**
+
+    - You can now use applications that require the update service.
+
+3. **Disable Update Service Again:**
+    - Once done, run `disable updates.bat` to disable the update service again.
 
 ## What It Does
 
--   Disables the Windows Update Service (wuauserv).
--   Disables the Update Orchestrator Service (UsoSvc).
--   Disables the Windows Update Medic Service (WaaSMedicSvc).
+The script performs the following actions to disable automatic updates:
+
+-   Disables the **Windows Update Service (wuauserv)**.
+-   Disables the **Update Orchestrator Service (UsoSvc)**.
+-   Disables the **Windows Update Medic Service (WaaSMedicSvc)**.
 -   Disables all update-related scheduled tasks.
--   Disallows auto-updates through registry changes.
+-   Applies registry changes to prevent auto-updates.
 
 ## Why is PsExec Needed?
 
