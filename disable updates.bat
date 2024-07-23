@@ -13,7 +13,7 @@ for %%i in (wuauserv, UsoSvc, uhssvc, WaaSMedicSvc) do (
 )
 
 :: Brute force rename services
-for %%i in (WaaSMedicSvc) do (
+for %%i in (WaaSMedicSvc, wuaueng) do (
 	takeown /f C:\Windows\System32\%%i.dll && icacls C:\Windows\System32\%%i.dll /grant *S-1-1-0:F
 	rename C:\Windows\System32\%%i.dll %%i_BAK.dll
 	icacls C:\Windows\System32\%%i_BAK.dll /setowner "NT SERVICE\TrustedInstaller" && icacls C:\Windows\System32\%%i_BAK.dll /remove *S-1-1-0

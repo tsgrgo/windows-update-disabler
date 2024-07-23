@@ -11,7 +11,7 @@ sc config UsoSvc start= auto
 sc config uhssvc start= delayed-auto
 
 :: Restore renamed services
-for %%i in (WaaSMedicSvc) do (
+for %%i in (WaaSMedicSvc, wuaueng) do (
 	takeown /f C:\Windows\System32\%%i_BAK.dll && icacls C:\Windows\System32\%%i_BAK.dll /grant *S-1-1-0:F
 	rename C:\Windows\System32\%%i_BAK.dll %%i.dll
 	icacls C:\Windows\System32\%%i.dll /setowner "NT SERVICE\TrustedInstaller" && icacls C:\Windows\System32\%%i.dll /remove *S-1-1-0
