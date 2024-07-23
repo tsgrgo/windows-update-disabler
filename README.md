@@ -15,11 +15,11 @@ Simple!
 2. Check if there are no updates currently being installed! (Settings > Update & Security > Windows Update)
 3. Run "disable updates.bat" and Windows will never update automatically again.
 
-You can run "reenable updates.bat" to undo the changes and allow Windows to update automatically again.
+You can run "enable updates.bat" to undo the changes and allow Windows to update automatically again.
 
 ## Recommended Way of Updating
 
-1. Run "reenable updates.bat" to re-enable Windows Update
+1. Run "enable updates.bat" to re-enable Windows Update
 2. Update Windows from settings (Settings > Update & Security > Windows Update)
 3. Run "disable updates.bat"
 
