@@ -1,3 +1,4 @@
+@echo off
 :: Author: tsgrgo
 :: Re-enable Windows auto updates and undo all changes by 'disable updates.bat'
 :: PsExec is required to get system privileges - it should be in this directory

@@ -1,3 +1,4 @@
+@echo off
 :: Author: tsgrgo
 :: PsExec is required to get system privileges - it should be in this directory
 
