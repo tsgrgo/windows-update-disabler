@@ -23,7 +23,17 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc" /v FailureActions 
 reg delete "HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "NoAutoUpdate" /f
 
 :: Enable all update related scheduled tasks
-powershell -command "Get-ScheduledTask -TaskPath '\Microsoft\Windows\InstallService\*' | Enable-ScheduledTask; Get-ScheduledTask -TaskPath '\Microsoft\Windows\UpdateOrchestrator\*' | Enable-ScheduledTask; Get-ScheduledTask -TaskPath '\Microsoft\Windows\UpdateAssistant\*' | Enable-ScheduledTask; Get-ScheduledTask -TaskPath '\Microsoft\Windows\WaaSMedic\*' | Enable-ScheduledTask; Get-ScheduledTask -TaskPath '\Microsoft\Windows\WindowsUpdate\*' | Enable-ScheduledTask; Get-ScheduledTask -TaskPath '\Microsoft\WindowsUpdate\*' | Enable-ScheduledTask"
+set cmd= ^
+$paths = @( ^
+'\Microsoft\Windows\InstallService*', ^
+'\Microsoft\Windows\UpdateOrchestrator*', ^
+'\Microsoft\Windows\UpdateAssistant*', ^
+'\Microsoft\Windows\WaaSMedic*', ^
+'\Microsoft\Windows\WindowsUpdate*', ^
+'\Microsoft\WindowsUpdate*' ^
+); ^
+foreach ($path in $paths) { Get-ScheduledTask -TaskPath $path ^| Enable-ScheduledTask -ErrorAction SilentlyContinue }
+powershell -NoProfile -Command "%cmd%"
 
 echo Finished
 pause
