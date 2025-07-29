@@ -28,8 +28,7 @@ reg add "HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" /v NoAutoUpd
 erase /f /s /q c:\windows\softwaredistribution\*.* && rmdir /s /q c:\windows\softwaredistribution
 
 :: Disable all update related scheduled tasks
-set cmd= ^
-$paths = @( ^
+powershell -NoProfile -Command $paths = @( ^
 '\Microsoft\Windows\InstallService*', ^
 '\Microsoft\Windows\UpdateOrchestrator*', ^
 '\Microsoft\Windows\UpdateAssistant*', ^
@@ -38,7 +37,6 @@ $paths = @( ^
 '\Microsoft\WindowsUpdate*' ^
 ); ^
 foreach ($path in $paths) { Get-ScheduledTask -TaskPath $path ^| Disable-ScheduledTask -ErrorAction SilentlyContinue }
-powershell -NoProfile -Command "%cmd%"
 
 echo Finished
 pause
