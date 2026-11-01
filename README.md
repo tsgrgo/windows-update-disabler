@@ -11,9 +11,10 @@
 
 ### Simple!
 
-1. **Clone or Download:**
+1. **Download or clone:**
 
-    - Clone this repository using `git clone https://github.com/tsgrgo/windows-update-disabler.git` or download it as a ZIP file and extract it.
+    - [Download repo](https://github.com/tsgrgo/windows-update-disabler/archive/refs/heads/main.zip) as a ZIP file and extract it.
+    - Alternatively, clone using `git clone https://github.com/tsgrgo/windows-update-disabler.git`
 
 2. **Check for Active Updates:**
 
