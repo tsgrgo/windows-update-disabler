@@ -2,14 +2,14 @@
 :: PsExec is required to get system privileges - it should be in this directory
 
 @echo off
-if not "%1"=="admin" (powershell start -verb runas '%0' admin & exit /b)
-if not "%2"=="system" (powershell . '%~dp0\PsExec.exe' /accepteula -i -s -d '%0' admin system & exit /b)
+if not "%1"=="admin" (powershell start -verb runas \"%0\" admin & exit /b)
+if not "%2"=="system" (powershell . \"%~dp0PsExec.exe\" /accepteula -i -s -d \"%0\" admin system & exit /b)
 
 :: Restore renamed services
 for %%i in (wuaueng) do (
-	takeown /f C:\Windows\System32\%%i_BAK.dll && icacls C:\Windows\System32\%%i_BAK.dll /grant *S-1-1-0:F
-	rename C:\Windows\System32\%%i_BAK.dll %%i.dll
-	icacls C:\Windows\System32\%%i.dll /setowner "NT SERVICE\TrustedInstaller" && icacls C:\Windows\System32\%%i.dll /remove *S-1-1-0
+	takeown /f "%WINDIR%\System32\%%i_BAK.dll" && icacls "%WINDIR%\System32\%%i_BAK.dll" /grant *S-1-1-0:F
+	rename "%WINDIR%\System32\%%i_BAK.dll" "%%i.dll"
+	icacls "%WINDIR%\%%i.dll" /setowner "NT SERVICE\TrustedInstaller" && icacls "%WINDIR%\System32\%%i.dll" /remove *S-1-1-0
 )
 
 :: Change service config

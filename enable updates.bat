@@ -1,9 +1,10 @@
+@echo off
 :: Author: tsgrgo
 :: Re-enable Windows auto updates and undo all changes by 'disable updates.bat'
 :: PsExec is required to get system privileges - it should be in this directory
 
-if not "%1"=="admin" (powershell start -verb runas '%0' admin & exit /b)
-if not "%2"=="system" (powershell . '%~dp0\PsExec.exe' /accepteula -i -s -d '%0' admin system & exit /b)
+if not "%1"=="admin" (powershell start -verb runas \"%0\" admin & exit /b)
+if not "%2"=="system" (powershell . \"%~dp0PsExec.exe\" /accepteula -i -s -d \"%0\" admin system & exit /b)
 
 :: Enable update related services
 sc config wuauserv start= auto
@@ -12,9 +13,9 @@ sc config uhssvc start= delayed-auto
 
 :: Restore renamed services
 for %%i in (WaaSMedicSvc, wuaueng) do (
-	takeown /f C:\Windows\System32\%%i_BAK.dll && icacls C:\Windows\System32\%%i_BAK.dll /grant *S-1-1-0:F
-	rename C:\Windows\System32\%%i_BAK.dll %%i.dll
-	icacls C:\Windows\System32\%%i.dll /setowner "NT SERVICE\TrustedInstaller" && icacls C:\Windows\System32\%%i.dll /remove *S-1-1-0
+	takeown /f C:\Windows\System32\%%i_BAK.dll && icacls "%WINDIR%\System32\%%i_BAK.dll" /grant *S-1-1-0:F
+	rename "%WINDIR%\System32\%%i_BAK.dll" "%%i.dll"
+	icacls "%WINDIR%\System32\%%i.dll" /setowner "NT SERVICE\TrustedInstaller" && icacls "%WINDIR%\System32\%%i.dll" /remove *S-1-1-0
 )
 
 :: Update registry
